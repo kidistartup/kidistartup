@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <script type="text/javascript">
+        document.addEventListener("deviceready", function() {
+
+            var url = "https://www.usakidi.com:/mySharedGames/7104";
+            // var oneSignalAppId = "33646d31-dbef-4bf9-98b1-1785bb951d37";
+            // var adId = "ca-app-pub-3952281633432405/9641378117";
+
+            var ref = cordova.InAppBrowser.open(url, '_blank', 'location=no,zoom=no');
+            ref.addEventListener('loadstart', inAppBrowserbLoadStart);
+            ref.addEventListener('loadstop', inAppBrowserbLoadStop);
+            ref.addEventListener('loaderror', inAppBrowserbLoadError);
+            ref.addEventListener('exit', inAppBrowserbClose);
+
+
+            function inAppBrowserbLoadStart(event) {
+
+            }
+
+            function inAppBrowserbLoadStop(event) {
+                //navigator.notification.activityStop();
+            }
+
+            function inAppBrowserbLoadError(event) {
+                // navigator.notification.activityStop();
+            }
+
+            function inAppBrowserbClose(event) {
+                ref.removeEventListener('loadstart', inAppBrowserbLoadStart);
+                ref.removeEventListener('loadstop', inAppBrowserbLoadStop);
+                ref.removeEventListener('loaderror', inAppBrowserbLoadError);
+                ref.removeEventListener('exit', inAppBrowserbClose);
+                navigator.app.exitApp();
+            }
+
+
+            //Push notification
+            // var notificationOpenedCallback = function(jsonData) {
+            //     console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+            // };
+            //
+            // window.plugins.OneSignal
+            //     .startInit(oneSignalAppId)
+            //     .handleNotificationOpened(notificationOpenedCallback)
+            //     .endInit();
+
+            //Admob
+            // var admobid = {
+            //     interstitial: adId
+            // };
+            //
+            // if(AdMob) AdMob.prepareInterstitial( {adId:admobid.interstitial, autoShow:true} );
+        }, false);
+    </script>
+</head>
+
+<body>
+
+    <h1>Loading...</h1>
+</body>
+
+</html>
